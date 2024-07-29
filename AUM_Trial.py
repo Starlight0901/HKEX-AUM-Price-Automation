@@ -12,14 +12,14 @@ chrome_options.add_argument("--headless")  # Run in headless mode for automation
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
-conn = snowflake.connector.connect(
-    user='your_username',
-    password='your_password',
-    account='your_account',
-    warehouse='your_warehouse',
-    database='your_database',
-    schema='your_schema'
-)
+#conn = snowflake.connector.connect(
+#    user='your_username',
+#    password='your_password',
+#    account='your_account',
+#    warehouse='your_warehouse',
+#    database='your_database',
+#    schema='your_schema'
+#)
 
 def scrape_aum(url):
 
