@@ -17,20 +17,26 @@ conn = snowflake.connector.connect(
 
 cursor = conn.cursor() # cursor object
 
+cursor.execute("USE DATABASE New_HKEX_DATA")
+cursor.execute("USE SCHEMA My_Schema")
+
+#  create the table if it doesn't exist
+create_table_sql = """
+CREATE TABLE IF NOT EXISTS new_AUM_Data (
+    date DATE,
+    aum_9008 FLOAT,
+    aum_9042 FLOAT,
+    aum_9439 FLOAT
+);
+"""
+
+cursor.execute(create_table_sql)
+
 # Set up Selenium options
 chrome_options = Options()
 chrome_options.add_argument("--headless")  # Run in headless mode for automation
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
-
-#conn = snowflake.connector.connect(
-#    user='your_username',
-#    password='your_password',
-#    account='your_account',
-#    warehouse='your_warehouse',
-#    database='your_database',
-#    schema='your_schema'
-#)
 
 def scrape_aum(url):
 
@@ -49,10 +55,20 @@ def scrape_aum(url):
   if div:
       # Extract the data
       aum = div.find('dt', class_='col_aum').text.strip() if div.find('dt', class_='col_aum') else "N/A"
+
+      aum_value = aum.text.strip() if aum else "N/A"
+      if aum_value.startswith("US$"):
+        aum_value = aum_value[3:]  # Remove "US$"
+      if aum_value.endswith("M"):
+        aum_value = float(aum_value[:-1])  # Remove "M" and convert to float
+      
       #current_date = datetime.datetime.now().strftime("%Y-%m-%d")
       aum_date = div.find('dt', class_='col_aum_date').text.strip() if div.find('dt', class_='col_aum_date') else "N/A"
 
-      return aum, aum_date
+      date = aum_date.text.strip() if aum_date else "N/A"
+    
+      
+      return aum_value, date
   else:
       print("Div not found. Please check the HTML structure and update the div selector.")
 
