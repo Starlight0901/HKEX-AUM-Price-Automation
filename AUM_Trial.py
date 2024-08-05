@@ -1,10 +1,19 @@
+import snowflake.connector
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
+from datetime import datetime
 import time
 import pandas as pd
 #import datetime
+
+# Snowflake connection
+conn = snowflake.connector.connect(
+    user='user',
+    password='password',
+    account='account'
+)
 
 # Set up Selenium options
 chrome_options = Options()
