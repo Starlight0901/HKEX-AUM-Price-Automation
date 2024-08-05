@@ -10,10 +10,12 @@ import pandas as pd
 
 # Snowflake connection
 conn = snowflake.connector.connect(
-    user='user',
-    password='password',
-    account='account'
+    user='SNOWFLAKE_USER',
+    password='SNOWFLAKE_PASSWORD',
+    account='SNOWFLAKE_ACCOUNT'
 )
+
+cursor = conn.cursor() # cursor object
 
 # Set up Selenium options
 chrome_options = Options()
@@ -89,3 +91,8 @@ def web_scrape():
   print(df)
 
 web_scrape()
+
+conn.commit()
+cursor.close()
+conn.close()
+
