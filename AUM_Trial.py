@@ -118,7 +118,7 @@ def scrape_aum_volume(url):
     if aum_turnover_value.startswith("US$"):
       aum_turnover_value = aum_turnover_value[3:]  # Remove "US$"
     if aum_turnover_value.endswith("K"):
-    aum_turnover_value = float(aum_turnover_value[:-1])*1000  # Remove "K" and convert to thousands
+      aum_turnover_value = float(aum_turnover_value[:-1])*1000  # Remove "K" and convert to thousands
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
