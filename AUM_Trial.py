@@ -17,8 +17,8 @@ conn = snowflake.connector.connect(
 
 cursor = conn.cursor() # cursor object
 
-cursor.execute("USE DATABASE New_HKEX_DATA")
-cursor.execute("USE SCHEMA My_Schema")
+cursor.execute("USE DATABASE AUM_Database")
+cursor.execute("USE SCHEMA AUM_schema")
 
 #  create the table if it doesn't exist
 create_table_sql = """
