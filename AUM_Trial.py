@@ -12,7 +12,7 @@ import pandas as pd
 conn = snowflake.connector.connect(
     user='Starlight9026',
     password='Starlight@9026',
-    account='https://lj38853.europe-west4.gcp.snowflakecomputing.com'
+    account='lj38853.europe-west4.gcp'
 )
 
 cursor = conn.cursor() # cursor object
