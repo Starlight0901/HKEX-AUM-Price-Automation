@@ -9,13 +9,13 @@ import pandas as pd
 #import datetime
 
 # Snowflake connection
-conn = snowflake.connector.connect(
-    user='Starlight9026',
-    password='Starlight@9026',
-    account='https://lj38853.europe-west4.gcp.snowflakecomputing.com'
-)
+#conn = snowflake.connector.connect(
+#    user='Starlight9026',
+#    password='Starlight@9026',
+#    account='https://lj38853.europe-west4.gcp.snowflakecomputing.com'
+#)
 
-cursor = conn.cursor() # cursor object
+#cursor = conn.cursor() # cursor object
 
 #cursor.execute("USE DATABASE AUM_Database")
 #cursor.execute("USE SCHEMA AUM_schema")
@@ -105,7 +105,7 @@ def web_scrape():
 
 web_scrape()
 
-conn.commit()
-cursor.close()
-conn.close()
+#conn.commit()
+#cursor.close()
+#conn.close()
 
