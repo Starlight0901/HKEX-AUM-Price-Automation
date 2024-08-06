@@ -9,20 +9,13 @@ import time
 import pandas as pd
 #import datetime
 
-# Fetch environment variables
-snowflake_user = os.getenv('SNOWFLAKE_USER')
-snowflake_password = os.getenv('SNOWFLAKE_PASSWORD')
-snowflake_account = os.getenv('SNOWFLAKE_ACCOUNT')
-snowflake_database = os.getenv('SNOWFLAKE_DATABASE')
-snowflake_schema = os.getenv('SNOWFLAKE_SCHEMA')
-
 # Snowflake connection
 conn = snowflake.connector.connect(
-        user=snowflake_user,
-        password=snowflake_password,
-        account=snowflake_account,
-        database=snowflake_database,
-        schema=snowflake_schema
+        user='Starlight9026',
+        password='Starlight@9026',
+        account='lj38853.europe-west4.gcp',
+        database='AUM_Database',
+        schema='AUM_schema'
     )
 print("Connection successful")
 
