@@ -55,17 +55,17 @@ chrome_options.add_argument("--headless")  # Run in headless mode for automation
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
-# Initialize the WebDriver
+
+
+def scrape_aum(url):
+  # Initialize the WebDriver
   driver = webdriver.Chrome(options=chrome_options)
   driver.get(url)
   time.sleep(5)  # Wait for the page to load
 
-  # Get the page source and parse it with BeautifulSoup
+# Get the page source and parse it with BeautifulSoup
   page_source = driver.page_source
   soup = BeautifulSoup(page_source, 'html.parser')
-
-
-def scrape_aum(url):
 
   # Locate the specific div containing the AUM data
   div = soup.find('div', class_='left_list_item list_item_as')
@@ -95,6 +95,14 @@ def scrape_aum(url):
   driver.quit()
 
 def scrape_aum_volume(url):
+  # Initialize the WebDriver
+  driver = webdriver.Chrome(options=chrome_options)
+  driver.get(url)
+  time.sleep(5)  # Wait for the page to load
+
+# Get the page source and parse it with BeautifulSoup
+  page_source = driver.page_source
+  soup = BeautifulSoup(page_source, 'html.parser')
 
   div_right = soup.find('div', class_='left_list_item list_item_op')
 
