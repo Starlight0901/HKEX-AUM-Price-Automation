@@ -109,18 +109,16 @@ def scrape_aum_volume(url):
   if div_right:
     aum_volume = div_right.find('dt', class_='col_volume').text.strip() if div_right.find('dt', class_='col_volume') else "N/A"
     aum_volume_value = aum_volume.strip() if aum else "N/A"
-  if aum_volume_value.endswith("K"):
-    aum_volume_value = float(aum_volume_value[:-1])*1000  # Remove "K" and convert to thousands
-
+    if aum_volume_value.endswith("K"):
+      aum_volume_value = float(aum_volume_value[:-1])*1000  # Remove "K" and convert to thousands
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  aum_turnover = div_right.find('dt', class_='col_turnover').text.strip() if div_right.find('dt', class_='col_turnover') else "N/A"
-
-  aum_turnover_value = aum_turnover.strip() if aum else "N/A"
+    aum_turnover = div_right.find('dt', class_='col_turnover').text.strip() if div_right.find('dt', class_='col_turnover') else "N/A"
+    aum_turnover_value = aum_turnover.strip() if aum else "N/A"
     if aum_turnover_value.startswith("US$"):
       aum_turnover_value = aum_turnover_value[3:]  # Remove "US$"
     if aum_turnover_value.endswith("K"):
-      aum_turnover_value = float(aum_turnover_value[:-1])*1000  # Remove "K" and convert to thousands
+    aum_turnover_value = float(aum_turnover_value[:-1])*1000  # Remove "K" and convert to thousands
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
