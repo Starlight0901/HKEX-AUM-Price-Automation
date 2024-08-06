@@ -78,7 +78,7 @@ def scrape_aum(url):
     if aum_value.startswith("US$"):
       aum_value = aum_value[3:]  # Remove "US$"
     if aum_value.endswith("M"):
-        aum_value = float(aum_value[:-1])  # Remove "M" and convert to float
+      aum_value = float(aum_value[:-1])  # Remove "M" and convert to float
 
 
     aum_date = div.find('dt', class_='col_aum_date').text.strip() if div.find('dt', class_='col_aum_date') else "N/A"
@@ -106,21 +106,21 @@ def scrape_aum_volume(url):
 
   div_right = soup.find('div', class_='left_list_item list_item_op')
 
-    if div_right:
-      aum_volume = div_right.find('dt', class_='col_volume').text.strip() if div_right.find('dt', class_='col_volume') else "N/A"
-      aum_volume_value = aum_volume.strip() if aum else "N/A"
-    if aum_volume_value.endswith("K"):
-        aum_volume_value = float(aum_volume_value[:-1])*1000  # Remove "K" and convert to thousands
+  if div_right:
+    aum_volume = div_right.find('dt', class_='col_volume').text.strip() if div_right.find('dt', class_='col_volume') else "N/A"
+    aum_volume_value = aum_volume.strip() if aum else "N/A"
+  if aum_volume_value.endswith("K"):
+    aum_volume_value = float(aum_volume_value[:-1])*1000  # Remove "K" and convert to thousands
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    aum_turnover = div_right.find('dt', class_='col_turnover').text.strip() if div_right.find('dt', class_='col_turnover') else "N/A"
+  aum_turnover = div_right.find('dt', class_='col_turnover').text.strip() if div_right.find('dt', class_='col_turnover') else "N/A"
 
-    aum_turnover_value = aum_turnover.strip() if aum else "N/A"
+  aum_turnover_value = aum_turnover.strip() if aum else "N/A"
     if aum_turnover_value.startswith("US$"):
       aum_turnover_value = aum_turnover_value[3:]  # Remove "US$"
     if aum_turnover_value.endswith("K"):
-        aum_turnover_value = float(aum_turnover_value[:-1])*1000  # Remove "K" and convert to thousands
+      aum_turnover_value = float(aum_turnover_value[:-1])*1000  # Remove "K" and convert to thousands
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
