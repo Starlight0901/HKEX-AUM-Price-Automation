@@ -17,20 +17,20 @@ conn = snowflake.connector.connect(
 
 cursor = conn.cursor() # cursor object
 
-#cursor.execute("USE DATABASE AUM_Database")
-#cursor.execute("USE SCHEMA AUM_schema")
+cursor.execute("USE DATABASE AUM_Database")
+cursor.execute("USE SCHEMA AUM_schema")
 
 #  create the table if it doesn't exist
-#create_table_sql = """
-#CREATE TABLE IF NOT EXISTS new_AUM_Data (
-#    date DATE,
-#    aum_9008 FLOAT,
-#    aum_9042 FLOAT,
-#    aum_9439 FLOAT
-#);
-#"""
+create_table_sql = """
+CREATE TABLE IF NOT EXISTS new_AUM_Data (
+    date DATE,
+    aum_9008 FLOAT,
+    aum_9042 FLOAT,
+    aum_9439 FLOAT
+);
+"""
 
-#cursor.execute(create_table_sql)
+cursor.execute(create_table_sql)
 
 # Set up Selenium options
 chrome_options = Options()
@@ -85,22 +85,22 @@ def web_scrape():
   latest_date = max(Date_9008, Date_9042, Date_9439)
 
   # Check if a record for the current date already exists
-  #cursor.execute(f"SELECT COUNT(*) FROM new_AUM_Data WHERE date = '{latest_date}'")
-  #record_exists = cursor.fetchone()[0] > 0
+  cursor.execute(f"SELECT COUNT(*) FROM new_AUM_Data WHERE date = '{latest_date}'")
+  record_exists = cursor.fetchone()[0] > 0
 
-  #if record_exists:
+  if record_exists:
     # Update the existing record
-  #  cursor.execute(f"""
-  #      UPDATE new_AUM_Data
-  #      SET aum_9008 = {BOS_HSK_9008}, aum_9042 = {HGI_9042}, aum_9439 = {CAM_9439}
-  #      WHERE date = '{latest_date}'
-  #  """)
-  #else:
-  #  # Insert new data into Snowflake
-  #  cursor.execute(f"""
-  #      INSERT INTO new_AUM_Data (date, aum_9008, aum_9042, aum_9439) 
-  #      VALUES ('{latest_date}', {BOS_HSK_9008}, {HGI_9042}, {CAM_9439})
-  #  """)
+    cursor.execute(f"""
+        UPDATE new_AUM_Data
+        SET aum_9008 = {BOS_HSK_9008}, aum_9042 = {HGI_9042}, aum_9439 = {CAM_9439}
+        WHERE date = '{latest_date}'
+    """)
+  else:
+    # Insert new data into Snowflake
+    cursor.execute(f"""
+        INSERT INTO new_AUM_Data (date, aum_9008, aum_9042, aum_9439) 
+        VALUES ('{latest_date}', {BOS_HSK_9008}, {HGI_9042}, {CAM_9439})
+    """)
 
 
 web_scrape()
