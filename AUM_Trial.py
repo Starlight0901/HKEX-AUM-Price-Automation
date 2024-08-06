@@ -90,7 +90,7 @@ def scrape_aum(url):
     return aum_value, aum_date
   else:
     print("Div not found. Please check the HTML structure and update the div selector.")
-
+  
   # Close the Selenium driver
   driver.quit()
 
@@ -108,13 +108,13 @@ def scrape_aum_volume(url):
 
   if div_right:
     aum_volume = div_right.find('dt', class_='col_volume').text.strip() if div_right.find('dt', class_='col_volume') else "N/A"
-    aum_volume_value = aum_volume.strip() if aum else "N/A"
+    aum_volume_value = aum_volume.strip() if aum_volume else "N/A"
     if aum_volume_value.endswith("K"):
       aum_volume_value = float(aum_volume_value[:-1])*1000  # Remove "K" and convert to thousands
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     aum_turnover = div_right.find('dt', class_='col_turnover').text.strip() if div_right.find('dt', class_='col_turnover') else "N/A"
-    aum_turnover_value = aum_turnover.strip() if aum else "N/A"
+    aum_turnover_value = aum_turnover.strip() if aum_volume else "N/A"
     if aum_turnover_value.startswith("US$"):
       aum_turnover_value = aum_turnover_value[3:]  # Remove "US$"
     if aum_turnover_value.endswith("K"):
@@ -126,6 +126,9 @@ def scrape_aum_volume(url):
     return aum_volume_value, aum_turnover_value
   else:
     print("Div not found. Please check the HTML structure and update the div selector.")
+          
+  # Close the Selenium driver
+  driver.quit()
 
 def save_to_aum_db(latest_date, BOS_HSK_9008, HGI_9042, CAM_9439):
   # Check if a record for the current date already exists
@@ -176,9 +179,6 @@ def web_scrape():
   volume_9008, turnover_9008 = scrape_aum_volume(url = "https://www.hkex.com.hk/Market-Data/Securities-Prices/Exchange-Traded-Products/Exchange-Traded-Products-Quote?sym=9008&sc_lang=en")
   volume_9042, turnover_9042 = scrape_aum_volume(url = "https://www.hkex.com.hk/Market-Data/Securities-Prices/Exchange-Traded-Products/Exchange-Traded-Products-Quote?sym=9439&sc_lang=en")
   volume_9439, turnover_9439 = scrape_aum_volume(url = "https://www.hkex.com.hk/Market-Data/Securities-Prices/Exchange-Traded-Products/Exchange-Traded-Products-Quote?sym=9042&sc_lang=en")
-
-  # Close the Selenium driver
-  driver.quit()
       
   # Find the latest date
   latest_date = max(Date_9008, Date_9042, Date_9439)
