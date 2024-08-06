@@ -11,13 +11,12 @@ import pandas as pd
 
 # Snowflake connection
 conn = snowflake.connector.connect(
-        user='Starlight9026',
+        user='STARLIGHT9026',
         password='Starlight@9026',
         account='lj38853.europe-west4.gcp',
         database='AUM_Database',
         schema='AUM_schema'
     )
-print("Connection successful")
 
 cursor = conn.cursor() # cursor object
 
