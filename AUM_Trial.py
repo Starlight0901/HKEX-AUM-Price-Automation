@@ -24,7 +24,7 @@ conn = snowflake.connector.connect(
         database=snowflake_database,
         schema=snowflake_schema
     )
-    print("Connection successful")
+print("Connection successful")
 
 cursor = conn.cursor() # cursor object
 
