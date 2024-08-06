@@ -165,7 +165,7 @@ def save_to_vol_turn_db(latest_date, volume_9008, turnover_9008, volume_9042, tu
     # Insert new data into Snowflake
     cursor.execute(f"""
         INSERT INTO Volume_Turnover_AUM_Data (date, volume_9008, turnover_9008, volume_9042, turnover_9042, volume_9439, turnover_9439) 
-        VALUES ('{latest_date}', {volume_9008}, {turnover_9008}, {volume_9042}, {turnover_9042}, {volume_9439}, {turnover_9439}, )
+        VALUES ('{latest_date}', {volume_9008}, {turnover_9008}, {volume_9042}, {turnover_9042}, {volume_9439}, {turnover_9439})
     """)
 
 
