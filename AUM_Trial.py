@@ -10,9 +10,9 @@ import pandas as pd
 
 # Snowflake connection
 conn = snowflake.connector.connect(
-    user='SNOWFLAKE_USER',
-    password='SNOWFLAKE_PASSWORD',
-    account='SNOWFLAKE_ACCOUNT'
+    user='Starlight9026',
+    password='Starlight@9026',
+    account='https://lj38853.europe-west4.gcp.snowflakecomputing.com'
 )
 
 cursor = conn.cursor() # cursor object
