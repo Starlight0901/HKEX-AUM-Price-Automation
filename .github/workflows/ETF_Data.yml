@@ -1,4 +1,4 @@
-name: Update Snowflake ETF Data
+name: Update Snowflake ETF Volume Data
 
 on:
   schedule:
