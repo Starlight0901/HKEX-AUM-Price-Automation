@@ -24,7 +24,7 @@ jobs:
         pip install pandas selenium beautifulsoup4
 
     - name: Run Scraper Script
-      run: python your_script_name.py
+      run: python volume_turnover_for_csv.py
 
     - name: Commit and Push Changes
       run: |
