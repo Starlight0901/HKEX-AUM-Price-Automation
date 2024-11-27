@@ -121,11 +121,15 @@ def save_to_csv(data):
 
     # Remove duplicates based on 'symbol' and 'date'
     df_combined = pd.concat([df_existing, df_new])
+    df_combined.replace("-", np.nan, inplace=True)
+    df_combined.fillna(method='ffill', inplace=True)
+
     df_combined = df_combined.drop_duplicates(subset=["date"], keep="last")
 
     # Save back to the CSV
     df_combined.to_csv(csv_file_path, index=False)
     print(f"Data saved to {csv_file_path}")
+
 
 if __name__ == "__main__":
     scraped_data = web_scrape()
