@@ -52,7 +52,7 @@ def fetch_and_store_9008():
 
     # Extract BTC Holdings
     all_tds_9008 = soup_9008.find_all('td', {'class': 'ant-table-cell'})
-    btc_holdings_9008 = all_tds_9008[146].get_text(strip=True)
+    btc_holdings_9008 = all_tds_9008[169].get_text(strip=True)
     btc_holdings_9008 = float(btc_holdings_9008.replace(',', ''))
 
     # Extract the date
