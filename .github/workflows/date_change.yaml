@@ -33,7 +33,7 @@ jobs:
         if git diff --quiet; then
           echo "No changes detected, skipping commit."
         else
-          git add volume_turnover_aum_data - Backfill Try 2 full doc.csv
+          git add volume_turnover_aum_data_new.csv
           git commit -m "Update CSV with latest data"
           git push
         fi
