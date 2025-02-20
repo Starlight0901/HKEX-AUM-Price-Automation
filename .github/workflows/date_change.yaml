@@ -24,7 +24,7 @@ jobs:
         pip install pandas selenium beautifulsoup4
 
     - name: Run Scraper Script
-      run: date_change.py
+      run: python date_change.py
 
     - name: Commit and Push Changes
       run: |
