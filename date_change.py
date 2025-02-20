@@ -12,10 +12,10 @@ Original file is located at
 import pandas as pd
 
 # Load the CSV file
-df = pd.read_csv("volume_turnover_aum_data_new.csv", parse_dates=["DATE"], dayfirst=True)
+df = pd.read_csv("volume_turnover_aum_data_new.csv", parse_dates=["date"], dayfirst=True)
 
 # Convert date format to YYYY-MM-DD
-df["DATE"] = df["DATE"].dt.strftime("%Y-%m-%d")
+df["date"] = df["date"].dt.strftime("%Y-%m-%d")
 
 # Rename columns to match the required format
 df.columns = ["date", "volume_9008", "volume_9042", "volume_9439", "turnover_9008", "turnover_9042", "turnover_9439"]
