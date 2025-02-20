@@ -39,7 +39,7 @@ def scrape_aum(url):
     aum_date = aum_date.strip() if aum_date else "N/A"
     aum_date = aum_date.replace('as at ', '').strip()
     aum_date = aum_date.replace('(', '').replace(')', '').strip()
-    aum_date = datetime.strptime(aum_date, '%d %b %Y').strftime('%Y-%m-%d')
+    aum_date = datetime.strptime(aum_date, '%d %b %Y').strftime('%#m/%#d/%Y')
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
     # Extract the data
