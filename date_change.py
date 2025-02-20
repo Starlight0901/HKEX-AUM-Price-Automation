@@ -12,7 +12,7 @@ Original file is located at
 import pandas as pd
 
 # Load the CSV file
-df = pd.read_csv("volume_turnover_aum_data - Backfill Try 2 full doc (1).csv", parse_dates=["DATE"], dayfirst=True)
+df = pd.read_csv("volume_turnover_aum_data - Backfill Try 2 full doc.csv", parse_dates=["DATE"], dayfirst=True)
 
 # Convert date format to YYYY-MM-DD
 df["DATE"] = df["DATE"].dt.strftime("%Y-%m-%d")
