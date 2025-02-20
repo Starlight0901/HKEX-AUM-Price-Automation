@@ -11,10 +11,16 @@ Original file is located at
 
 import pandas as pd
 
-# Load the CSV file
-df = pd.read_csv("volume_turnover_aum_data_new.csv", parse_dates=["date"], dayfirst=True)
+df = pd.read_csv("volume_turnover_aum_data_new.csv")
 
-# Convert date format to YYYY-MM-DD
+# Convert date column explicitly
+df["date"] = pd.to_datetime(df["date"], format="%d-%b-%y", errors="coerce")
+
+# Check if any conversion issues occurred
+if df["date"].isna().sum() > 0:
+    print("Warning: Some date values could not be converted!")
+
+# Reformat date
 df["date"] = df["date"].dt.strftime("%Y-%m-%d")
 
 # Rename columns to match the required format
@@ -27,4 +33,7 @@ df = df[["date", "volume_9008", "turnover_9008", "volume_9042", "turnover_9042",
 df.to_csv("volume_turnover_aum_data_new.csv", index=False)
 
 print("CSV file has been reformatted and saved as formatted_file.csv")
+
+
+
 
